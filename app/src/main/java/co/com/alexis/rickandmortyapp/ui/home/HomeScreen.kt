@@ -34,7 +34,14 @@ fun HomeScreen(
         homeViewModel.effects.collect { effect ->
             when (effect) {
                 is HomeEffect.ShowError -> {
-                    errorHandler.showError(ErrorDialog(effect.message))
+                    errorHandler.showError(
+                        ErrorDialog(
+                            message = effect.message,
+                            onRetry = {
+                                homeViewModel.getCharacter()
+                            }
+                        )
+                    )
                 }
             }
         }

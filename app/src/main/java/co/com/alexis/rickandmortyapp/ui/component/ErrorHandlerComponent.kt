@@ -13,8 +13,8 @@ val LocalErrorHandler = compositionLocalOf<ErrorHandler> {
 }
 
 data class ErrorDialog(
-    val title: String? = null,
-    val message: String? = null
+    val message: String? = null,
+    val onRetry: (() -> Unit)? = null
 )
 
 class ErrorHandler {

@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
         getCharacter()
     }
 
-    private fun getCharacter() {
+    fun getCharacter() {
         updateState(ResultState.Loading)
         viewModelScope.launch {
             characterRepository.getCharacters()
