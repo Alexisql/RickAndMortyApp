@@ -42,8 +42,8 @@ fun ErrorDialogComponent(
                 }
 
                 Button(onClick = {
-                    error.onRetry?.invoke()
                     onDismiss()
+                    error.onRetry.invoke()
                 }) {
                     Text(text = stringResource(R.string.label_retry))
                 }
@@ -59,7 +59,8 @@ fun ErrorDialogComponent(
 private fun ErrorDialogComponentPreview() {
     ErrorDialogComponent(
         error = ErrorDialog(
-            message = "description"
+            message = "description",
+            onRetry = {}
         ),
         onDismiss = {}
     )

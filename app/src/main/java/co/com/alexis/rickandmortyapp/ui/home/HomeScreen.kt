@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,11 +15,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import co.com.alexis.rickandmortyapp.domain.model.Character
 import co.com.alexis.rickandmortyapp.ui.component.ErrorDialog
+import co.com.alexis.rickandmortyapp.ui.component.ErrorHandler
 import co.com.alexis.rickandmortyapp.ui.component.LocalErrorHandler
 import co.com.alexis.rickandmortyapp.ui.component.SpacerComponent
 import co.com.alexis.rickandmortyapp.ui.home.component.HomeSkeleton
 import co.com.alexis.rickandmortyapp.ui.home.component.ItemCharacter
-import co.com.alexis.rickandmortyapp.ui.home.contract.HomeEffect
 import co.com.alexis.rickandmortyapp.ui.util.ResultState
 
 @Composable
@@ -30,29 +29,20 @@ fun HomeScreen(
     val state by homeViewModel.uiState.collectAsStateWithLifecycle()
     val errorHandler = LocalErrorHandler.current
 
-    LaunchedEffect(Unit) {
-        homeViewModel.effects.collect { effect ->
-            when (effect) {
-                is HomeEffect.ShowError -> {
-                    errorHandler.showError(
-                        ErrorDialog(
-                            message = effect.message,
-                            onRetry = {
-                                homeViewModel.getCharacter()
-                            }
-                        )
-                    )
-                }
-            }
+    HomeContent(
+        state = state,
+        errorHandler = errorHandler,
+        onRetry = {
+            homeViewModel.getCharacter()
         }
-    }
-
-    HomeContent(state = state)
+    )
 }
 
 @Composable
 private fun HomeContent(
-    state: ResultState<List<Character>>
+    state: ResultState<List<Character>>,
+    errorHandler: ErrorHandler,
+    onRetry: () -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
@@ -80,6 +70,17 @@ private fun HomeContent(
                     }
                 }
 
+                is ResultState.Error -> {
+                    errorHandler.showError(
+                        ErrorDialog(
+                            message = state.error,
+                            onRetry = {
+                                onRetry()
+                            }
+                        )
+                    )
+                }
+
                 else -> {
                     Unit
                 }
@@ -92,6 +93,8 @@ private fun HomeContent(
 @Composable
 private fun HomeContentPreview() {
     HomeContent(
-        state = ResultState.Loading
+        state = ResultState.Loading,
+        errorHandler = ErrorHandler(),
+        onRetry = {}
     )
 }

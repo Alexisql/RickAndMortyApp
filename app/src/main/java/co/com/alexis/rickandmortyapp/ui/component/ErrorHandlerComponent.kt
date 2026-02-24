@@ -14,7 +14,7 @@ val LocalErrorHandler = compositionLocalOf<ErrorHandler> {
 
 data class ErrorDialog(
     val message: String? = null,
-    val onRetry: (() -> Unit)? = null
+    val onRetry: () -> Unit
 )
 
 class ErrorHandler {
