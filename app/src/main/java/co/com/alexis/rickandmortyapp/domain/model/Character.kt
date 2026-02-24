@@ -1,4 +1,4 @@
-package co.com.alexis.rickandmortyapp.domain
+package co.com.alexis.rickandmortyapp.domain.model
 
 data class Character(
     val id: Int,

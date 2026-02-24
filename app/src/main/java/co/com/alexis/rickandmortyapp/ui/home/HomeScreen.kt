@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import co.com.alexis.rickandmortyapp.domain.Character
+import co.com.alexis.rickandmortyapp.domain.model.Character
 import co.com.alexis.rickandmortyapp.ui.component.ErrorDialog
 import co.com.alexis.rickandmortyapp.ui.component.LocalErrorHandler
 import co.com.alexis.rickandmortyapp.ui.component.SpacerComponent
@@ -85,6 +85,6 @@ private fun HomeContent(
 @Composable
 private fun HomeContentPreview() {
     HomeContent(
-        state = ResultState.Idle
+        state = ResultState.Loading
     )
 }

@@ -33,8 +33,8 @@ fun HomeSkeleton(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 border = BorderStroke(1.dp, Color.LightGray),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.Transparent
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp
                 )
             ) {
                 Row(

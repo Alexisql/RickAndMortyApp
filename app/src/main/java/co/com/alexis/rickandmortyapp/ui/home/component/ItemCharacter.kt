@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.com.alexis.rickandmortyapp.R
-import co.com.alexis.rickandmortyapp.domain.Character
+import co.com.alexis.rickandmortyapp.domain.model.Character
 import co.com.alexis.rickandmortyapp.ui.component.SpacerComponent
 import co.com.alexis.rickandmortyapp.ui.theme.Typography
 
