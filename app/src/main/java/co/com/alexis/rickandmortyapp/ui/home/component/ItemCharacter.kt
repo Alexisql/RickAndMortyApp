@@ -1,11 +1,9 @@
 package co.com.alexis.rickandmortyapp.ui.home.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -13,12 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import co.com.alexis.rickandmortyapp.R
 import co.com.alexis.rickandmortyapp.domain.model.Character
+import co.com.alexis.rickandmortyapp.ui.component.LoadImageAsyncComponent
 import co.com.alexis.rickandmortyapp.ui.component.SpacerComponent
 import co.com.alexis.rickandmortyapp.ui.theme.Typography
 
@@ -40,11 +37,7 @@ fun ItemCharacter(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row {
-                Image(
-                    modifier = Modifier.size(90.dp),
-                    painter = painterResource(R.drawable.ic_launcher_background),
-                    contentDescription = null
-                )
+                LoadImageAsyncComponent(url = character.image)
                 SpacerComponent(10)
                 Column(
                     modifier = Modifier
@@ -87,7 +80,7 @@ private fun ItemCharacterPreview() {
             id = 1,
             name = "Rick Sanchez",
             status = "Alive",
-            image = ""
+            image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
         )
     )
 }

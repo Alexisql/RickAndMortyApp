@@ -65,6 +65,10 @@ dependencies {
     implementation(libs.serialization)
     implementation(libs.serialization.conver)
 
+    //Coil
+    implementation(libs.coil)
+    implementation(libs.coil.network)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
